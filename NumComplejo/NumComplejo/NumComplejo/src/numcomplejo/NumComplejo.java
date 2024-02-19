@@ -172,6 +172,8 @@ public class NumComplejo {
 		}else
 			return pReal+"-"+(pImaginaria*(-1))+"i";
 	}
+        
+        
 	
 	
 	
