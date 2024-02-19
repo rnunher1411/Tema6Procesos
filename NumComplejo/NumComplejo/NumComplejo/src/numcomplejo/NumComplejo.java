@@ -128,6 +128,12 @@ public class NumComplejo {
                 
                 //Genera la excepción por número Indeterminado
                 
+                if (dividendoReal == 0 || dividendoImaginario == 0 && divisor == 0) {
+            
+                    throw new ArithmeticException("Indeterminado.");
+            
+                }
+                
                 ////////////////////////////////////////////////////////////
                 //Genera la excepción por número Indeterminado //
                 //dividendoReal o dividendoImaginario es 0 y divisor es 0 //
