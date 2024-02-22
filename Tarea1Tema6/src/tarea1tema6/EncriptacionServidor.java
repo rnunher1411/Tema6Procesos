@@ -3,6 +3,7 @@ package tarea1tema6;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -62,7 +63,10 @@ public class EncriptacionServidor {
         inOO.writeObject(clavePublica);
             
         //Flujo de salida
-        PrintWriter pt = new PrintWriter(socketCliente.getOutputStream(), true);
+        ObjectInputStream inOI = new ObjectInputStream(socketCliente.getInputStream());
+        //byte[] bufferCifrado = inOI.read();
+        
+        
         
     }
     
