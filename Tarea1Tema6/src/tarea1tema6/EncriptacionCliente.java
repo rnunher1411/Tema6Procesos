@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -29,6 +30,7 @@ public class EncriptacionCliente {
         
         //Flujo de entrada
         ObjectInputStream inSR = new ObjectInputStream(s.getInputStream());
+        ObjectOutputStream inOO = new ObjectOutputStream(s.getOutputStream());
         PublicKey clavePublica = (PublicKey)inSR.readObject();
         
         //espacio en memoria para la entrada de peticiones
@@ -46,8 +48,7 @@ public class EncriptacionCliente {
         mostrarBytes(bufferCifrado);
         System.out.println("\n__________________________________________");
         
-        PrintWriter salidaSocket = new PrintWriter(s.getOutputStream(), true);
-        salidaSocket.println(bufferCifrado);
+        inOO.writeObject(bufferCifrado);
         
         /*
         cifrador.init(Cipher.DECRYPT_MODE, clavePrivada);

@@ -69,7 +69,6 @@ public class EncriptacionServidor {
             
         //Flujo de salida
         ObjectInputStream inOI = new ObjectInputStream(socketCliente.getInputStream());
-        //byte[] bufferCifrado = inOI.read();
         
         Cipher cifrador = null;
         
@@ -78,24 +77,15 @@ public class EncriptacionServidor {
             cifrador.init(Cipher.DECRYPT_MODE, clavePrivada);
             
             System.out.println("Descifrar con clave privada");
-            byte[] bufferCifrado = inOI.readAllBytes();
+            byte[] bufferCifrado = (byte[])inOI.readObject();
             byte[] bufferClaro;
             bufferClaro = cifrador.doFinal(bufferCifrado);
             System.out.println("Texto descifrado");
             mostrarBytes(bufferClaro);
             
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(EncriptacionServidor.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchPaddingException ex) {
-            Logger.getLogger(EncriptacionServidor.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvalidKeyException ex) {
-            Logger.getLogger(EncriptacionServidor.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalBlockSizeException ex) {
-            Logger.getLogger(EncriptacionServidor.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (BadPaddingException ex) {
-            Logger.getLogger(EncriptacionServidor.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            
         }
-        
         
         
         System.out.println("\n_______________");
